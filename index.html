@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html ng-app='WeatherApp'>
+  <head>
+    <title> Weather Forecast! </title>
+    <base href='/'>
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css'>
+    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='main.css'>
+
+    <script src = 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js'></script>
+    <script src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src = 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js'></script>
+    <script src = 'app.js'></script>
+    <script src = 'controller.js'></script>
+    <script src = "https://use.fontawesome.com/8b655a70be.js"></script>
+  </head>
+
+  <body>
+
+    <div class = 'bigdiv' ng-controller='WeatherController' ng-init="getCurrDate();">
+        <div class='header'>
+          <h1> Weather Forecast </h1>
+    </div>
+
+<div class='author'>
+  <p> created by <a href="http://christopherpang.net" class='byCP'> Christopher Pang </a> </p>
+</div>
+
+<div class='date' id='currDate'>
+  <div>
+    {{dateToday}}
+  </div>
+  <div style='margin-top: 10px;'>
+    <!--{{timeNow}}-->
+    <p> {{clock | date:'h:mm a'}}</p>
+  </div>
+</div>
+
+<div class='clickcity'>
+    <p>Click on a City below...</p>
+    <div class='btn-group'>
+      <button class="button" ng-click='clickedCity("Kelowna"); kelowna=true; vancouver=false; victoria=false;'  ng-class='{active:kelowna}'> Kelowna </button>
+      <button class="button" ng-click='clickedCity("Vancouver"); kelowna=false; vancouver=true; victoria=false;'  ng-class='{active:vancouver}'> Vancouver </button>
+      <button class="button" ng-click='clickedCity("Victoria"); kelowna=false; vancouver=false; victoria=true;'  ng-class='{active:victoria}'> Victoria </button>
+    </div>
+  </div>
+
+  <div class='searchcity'>
+    <p>Or... Search for another City</p>
+    <form class='searchForm'>
+      <input class='searchbar' type='text' placeholder='Search for a City' ng-model='searchText'> 
+      <button type="submit" class='searchicon' ng-click="search(searchText); kelowna=false; vancouver=false; victoria=false;"> <i class='fa fa-search'></i> </a>
+      </form>
+    </div>
+
+
+    <div class='weatherinfo' id='thisWeatherInfo'>
+     <div class='currentCity'>{{currentCity}} {{countryAbbrev}}</div>
+     {{currTemp}} <button class='unit' ng-click='switchTemp(unit)'>{{unit}}</button> 
+     <div class='weathericon'>
+      <i class="{{weatherIcon}}" id='iconweather'></i>
+    </div>
+  </div>
+
+
+  <div class='forecastDays'>
+    <p>Days of Forecast</p>
+    <div class='btn-group'>
+      <button class="button" ng-click='threeDay = true; sevenDay = false;' ng-class='{active: threeDay}'> 3-Day </button>
+      <button class="button" ng-click='threeDay = false; sevenDay = true' ng-class='{active: sevenDay}'> 7-Day </button>
+    </div>
+  </div>
+
+   <div class='threeDayForecast' ng-show="threeDay">
+    <div class='col-md-3'>
+    </div>
+    <div class='col-md-2'>
+      <p>{{forecastArray[0][0]}}</p>
+      <p>{{forecastArray[0][1]}}</p>
+      <i class="{{forecastWeatherIcon[0]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-2'>
+      <p>{{forecastArray[1][0]}}</p>
+      <p>{{forecastArray[1][1]}}</p>
+      <i class="{{forecastWeatherIcon[1]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-2'>
+      <p>{{forecastArray[2][0]}}</p>
+      <p>{{forecastArray[2][1]}}</p>
+      <i class="{{forecastWeatherIcon[2]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-3'>
+    </div>
+  </div>
+
+
+  <div align='center' class='sevenDayForecast' ng-show="sevenDay">
+    <div class='col-md-1 alteredWidth'>
+      <p>{{forecastArray[0][0]}}</p>
+      <p>{{forecastArray[0][1]}}</p>
+      <i class="{{forecastWeatherIcon[0]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-1 alteredWidth'>
+      <p>{{forecastArray[1][0]}}</p>
+      <p>{{forecastArray[1][1]}}</p>
+      <i class="{{forecastWeatherIcon[1]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-1 alteredWidth'>
+      <p>{{forecastArray[2][0]}}</p>
+      <p>{{forecastArray[2][1]}}</p>
+      <i class="{{forecastWeatherIcon[2]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-1 alteredWidth'>
+      <p>{{forecastArray[3][0]}}</p>
+      <p>{{forecastArray[3][1]}}</p>
+      <i class="{{forecastWeatherIcon[3]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-1 alteredWidth'>
+      <p>{{forecastArray[4][0]}}</p>
+      <p>{{forecastArray[4][1]}}</p>
+      <i class="{{forecastWeatherIcon[4]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-1 alteredWidth'>
+      <p>{{forecastArray[5][0]}}</p>
+      <p>{{forecastArray[5][1]}}</p>
+      <i class="{{forecastWeatherIcon[5]}}" id='iconweather'></i>
+    </div>
+    <div class='col-md-1 alteredWidth'>
+      <p>{{forecastArray[6][0]}}</p>
+      <p>{{forecastArray[6][1]}}</p>
+      <i class="{{forecastWeatherIcon[6]}}" id='iconweather'></i>
+    </div>
+  </div> 
+
+
+
+
+
+  
+
+</div>
+
+  </body>
+
+</html>

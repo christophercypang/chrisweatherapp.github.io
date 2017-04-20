@@ -1,0 +1,172 @@
+body {
+	background: #161616;
+	font-family: "Roboto";
+	padding-bottom: 12%;
+}
+
+.header {
+	color: white;
+	text-align: center;
+	margin-top: 50px;
+	font-size: 32px;
+}
+
+.author {
+	color: #c2c2d6;
+	text-align: center;
+	font-size: 18px;
+}
+
+.byCP {
+	text-decoration: none;
+	color: #ffa31a;
+}
+
+.byCP:hover {
+	text-decoration: none;
+	color: #F9DF04;
+}
+
+.date {
+	text-align: center;
+	color: white;
+	font-size: 28px;
+	margin-top: 25px;
+}
+
+.droplist {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.clickcity {
+	color: white;
+	text-align: center;
+	font-size: 22px;
+	margin-top: 50px;
+}
+
+.button {
+	background-color: #adadad;
+	border: none;
+	border-radius: 5px;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 30px;
+	font-weight: 100 !important;
+	margin: 4px 15px;
+	padding: 5px 10px 5px 10px;
+
+	cursor: pointer;
+}
+
+
+.button:focus{
+	background-color: #ffa31a;
+	transition: all 1s;
+	outline: 0;
+	color: white;
+}
+
+.button:active {
+	background-color: #ffa31a;
+	transition: all 1s;
+	outline: 0;
+	color: white;
+}
+
+.button.active{
+	background-color: #ffa31a;
+	outline: 0;
+	color: white;
+}
+
+
+.weatherinfo {
+	text-align: center;
+	color: white;
+	font-size: 60px;
+	margin-top: 50px;
+}
+
+.unit {
+	outline: none;
+	background-color: #161616;
+	text-decoration: none;
+	border: none;
+	font-size: 60px;
+	color: #ffa31a;
+	font-weight: 100 !important;
+
+}
+
+.currentCity {
+	margin-bottom: 15px;
+}
+
+.weathericon{
+	font-size: 64px;
+}
+
+.threeDayForecast{
+	text-align: center;
+	color: white;
+	margin-top: 30px;
+}
+
+.sevenDayForecast{
+	color: white;
+	margin-top: 30px;
+	font-size: 18px;
+	/*margin-left: 8%;*/
+}
+
+.col-md-2{
+	font-size: 18px;
+}
+
+.forecastDays {
+	color: white;
+	text-align: center;
+	font-size: 22px;
+	margin-top: 50px;
+}
+
+.searchcity{
+	color: white;
+	text-align: center;
+	font-size: 22px;
+	margin-top: 15px;
+
+}
+
+.searchForm {
+	margin-top: -10px;
+	margin-left: 2.5%;
+}
+
+.searchbar {
+	color: grey;
+}
+
+.searchicon {
+  text-decoration: none;
+  color: #ffa31a;
+  font-size: 30px;
+  background-color: #161616;
+  border: none;
+}
+
+.searchicon:focus {
+	outline: 0;
+}
+
+.clock {
+	color: white;
+}
+
+.alteredWidth {
+	width: 14.28% !important;
+}
